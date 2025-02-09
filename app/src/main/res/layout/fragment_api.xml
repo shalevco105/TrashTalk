@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".modules.api.ApiFragment">
 
-    <!-- Title Text: TrashTalk Supported Cities -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -23,7 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Subheading Text: Type a city name -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -39,7 +37,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <!-- EditText for city search input -->
     <EditText
         android:id="@+id/qText"
         android:layout_width="0dp"
@@ -55,7 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <!-- Search Button -->
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
@@ -67,7 +63,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/qText" />
 
-    <!-- Result Text (to display result) -->
     <TextView
         android:id="@+id/result"
         android:layout_width="0dp"
@@ -82,7 +77,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/qText" />
 
-    <!-- Progress Bar for loading state -->
     <ProgressBar
         android:id="@+id/progressBarApi"
         style="?android:attr/progressBarStyle"

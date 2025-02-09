@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import trashTalk.apps.trashTalk.base.MyApplication
 import trashTalk.apps.trashTalk.models.FirebaseModel
+import trashTalk.apps.trashTalk.models.Model
+import trashTalk.apps.trashTalk.models.User
 import trashTalk.apps.trashTalk.modules.auth.LoginFragmentDirections
 import trashTalk.apps.trashTalk.modules.userTrashes.UserTrashesFragmentDirections
 

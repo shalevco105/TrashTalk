@@ -1,0 +1,5 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.trashTalk" parent="Theme.Material3.DayNight">
+    </style>
+    <style name="Theme.trashTalk" parent="Base.Theme.trashTalk" />
+</resources>

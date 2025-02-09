@@ -64,8 +64,8 @@ data class Trash(
 
         fun fromJSON(json:Map<String, Any>):Trash {
             val id = json.get(ID_KEY) as? String ?: ""
-            val name = json.get(NAME_KEY) as? String ?: ""
             val address = json.get(ADDRESS_KEY) as? String ?: ""
+            val name = json.get(NAME_KEY) as? String ?: ""
             val isChecked = json.get(IS_CHECKED_KEY) as? Boolean?: false
             val author = json.get(AUTHOR) as? String?: ""
             val imageUrl = json[IMAGE_URL_KEY] as? String?: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Golde33443.jpg"
@@ -83,8 +83,8 @@ data class Trash(
     val json: Map<String, Any> get() {
         return hashMapOf(
             ID_KEY to id,
-            NAME_KEY to name,
             ADDRESS_KEY to address,
+            NAME_KEY to name,
             IS_CHECKED_KEY to isChecked,
             IMAGE_URL_KEY to imageUrl,
             AUTHOR to author,

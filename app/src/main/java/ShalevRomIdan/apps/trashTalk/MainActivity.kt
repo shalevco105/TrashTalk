@@ -1,16 +1,13 @@
 package trashTalk.apps.trashTalk
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,11 +15,8 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import trashTalk.apps.trashTalk.base.MyApplication
-import trashTalk.apps.trashTalk.models.FirebaseModel
 import trashTalk.apps.trashTalk.models.Model
-import trashTalk.apps.trashTalk.models.User
 import trashTalk.apps.trashTalk.modules.auth.LoginFragmentDirections
-import trashTalk.apps.trashTalk.modules.userTrashes.UserTrashesFragmentDirections
 
 class MainActivity : AppCompatActivity() {
     private var navController:NavController? = null

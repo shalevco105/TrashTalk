@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".modules.showcaseTrash.ShowcaseTrashFragment">
 
-    <!-- Showcase Trash Image -->
     <ImageView
         android:id="@+id/showcaseTrashImage"
         android:layout_width="150dp"
@@ -29,7 +28,7 @@
         android:id="@+id/trashNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trash Name:"
+        android:text="Trash Name"
         android:textColor="@color/primary"
         android:textSize="16sp"
         android:layout_marginTop="8dp"
@@ -41,7 +40,7 @@
         android:id="@+id/authorNickName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trash Author: "
+        android:text="Trash Author"
         android:textColor="@color/primary"
         android:textSize="16sp"
         android:layout_marginTop="8dp"
@@ -54,7 +53,7 @@
         android:id="@+id/trashAddressTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trash Address: "
+        android:text="Trash Address"
         android:textColor="@color/primary"
         android:textSize="16sp"
         android:layout_marginTop="8dp"

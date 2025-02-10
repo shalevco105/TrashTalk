@@ -1,12 +1,8 @@
 package trashTalk.apps.trashTalk.modules.profile
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.OpenableColumns
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,16 +13,11 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import com.cloudinary.Cloudinary
-import com.cloudinary.utils.ObjectUtils
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import trashTalk.apps.trashTalk.base.MyApplication
 import trashTalk.apps.trashTalk.databinding.FragmentProfileBinding
 import trashTalk.apps.trashTalk.models.Model
-import java.io.File
-import java.io.FileOutputStream
+import trashTalk.apps.trashTalk.services.CloudinaryService
 
 class ProfileFragment : Fragment() {
     private val placeholderImageSrc = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"
@@ -36,7 +27,7 @@ class ProfileFragment : Fragment() {
     private var nicknameEdit: TextView? = null
     private var progressBar: ProgressBar? = null
     private var profileImageUri: Uri? = null
-    private var storageRef = Firebase.storage.reference;
+    private lateinit var cloudinaryService: CloudinaryService
 
 
     private var _binding: FragmentProfileBinding? = null
@@ -46,7 +37,8 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        cloudinaryService = CloudinaryService()
+
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -75,12 +67,8 @@ class ProfileFragment : Fragment() {
     }
 
     fun chooseProfilePicture(view: View) {
-        // PICK INTENT picks item from data
-        // and returned selected item
         val galleryIntent = Intent(Intent.ACTION_PICK)
-        // here item is type of image
         galleryIntent.type = "image/*"
-        // ActivityResultLauncher callback
         imagePickerActivityResult.launch(galleryIntent)
     }
 
@@ -100,45 +88,6 @@ class ProfileFragment : Fragment() {
             }
         }
 
-    private fun uploadImageToCloudinary(callback: (String) -> Unit) {
-        val cloudinary = Cloudinary(
-            ObjectUtils.asMap(
-            "cloud_name", "dy5xyzlhm",
-            "api_key", "576721329452639",
-            "api_secret", "xiPVujuY3tz3RxBqcZ8futbNVp8"
-        ))
-
-        val filePath = getFilePathFromUri(profileImageUri!!) // Convert URI to File path
-
-        Thread {
-            try {
-                val result = cloudinary.uploader().upload(File(filePath), ObjectUtils.emptyMap())
-                val imageUrl = result["secure_url"] as String
-                Log.e("Cloudinary", "Upload success - $imageUrl")
-                callback(imageUrl)
-            } catch (e: Exception) {
-                Log.e("Cloudinary", "Image Upload failed: ${e.message}")
-            }
-        }.start()
-    }
-
-    private fun getFilePathFromUri(uri: Uri): String {
-        val context = requireContext()
-        val inputStream = context.contentResolver.openInputStream(uri)
-        val file = File(context.cacheDir, "temp_image_file")
-        val outputStream = FileOutputStream(file)
-
-        inputStream?.use { input ->
-            outputStream.use { output ->
-                input.copyTo(output)
-            }
-        }
-
-        return file.absolutePath
-    }
-
-
-
     fun onSave(view: View) {
         progressBar?.visibility = View.VISIBLE
         val id = MyApplication.Globals.user?.id
@@ -148,9 +97,8 @@ class ProfileFragment : Fragment() {
             && nicknameEdit?.text != null
             && email != null) {
 
-            // check if image is changed
             if (profileImageUri != null) {
-                uploadImageToCloudinary { uri ->
+                cloudinaryService.uploadImage(requireContext(), profileImageUri!!){ uri ->
                     Model.instance.updateUser(id, nicknameEdit?.text.toString(), uri) {
                         Model.instance.getUserByEmail(email)
                         progressBar?.visibility = View.GONE

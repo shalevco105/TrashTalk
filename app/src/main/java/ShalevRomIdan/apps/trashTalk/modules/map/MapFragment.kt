@@ -99,12 +99,21 @@ class MapFragment : Fragment(), OnMapReadyCallback, LocationListener {
         ) {
             enableMyLocation()
         } else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    requireActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                Toast.makeText(requireContext(), "Location access is required to show your current location.", Toast.LENGTH_LONG).show()
+            }
+
             requestPermissions(
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 LOCATION_PERMISSION_REQUEST_CODE
             )
         }
     }
+
 
     private fun moveToCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(

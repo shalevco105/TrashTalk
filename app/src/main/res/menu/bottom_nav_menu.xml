@@ -8,7 +8,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     android:title="home" />
 <item
     android:id="@+id/addTrashFragment"
-    android:icon="@android:drawable/ic_menu_add"
+    android:icon="@drawable/add"
     android:title="add" />
 <item
     android:id="@+id/profileFragment"

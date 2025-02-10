@@ -84,13 +84,13 @@
     <fragment
         android:id="@+id/apiFragment"
         android:name="trashTalk.apps.trashTalk.modules.api.ApiFragment"
-        android:label="fragment_api"
+        android:label="City List"
         tools:layout="@layout/fragment_api" />
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="trashTalk.apps.trashTalk.modules.profile.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_global_profileFragment"

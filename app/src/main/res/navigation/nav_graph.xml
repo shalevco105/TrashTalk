@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="trashTalk.apps.trashTalk.modules.auth.LoginFragment"
-        android:label="fragment_login"
+        android:label="Login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_trashesFragment3"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="trashTalk.apps.trashTalk.modules.auth.SignUpFragment"
-        android:label="fragment_sign_up"
+        android:label="Sign Up"
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"

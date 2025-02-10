@@ -30,6 +30,7 @@ class TrashesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         _binding = FragmentTrashesBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -41,13 +42,14 @@ class TrashesFragment : Fragment() {
         trashesRecyclerView = binding.rvTrashFragmentList
         trashesRecyclerView?.setHasFixedSize(true)
 
+        // Set the layout manager
         trashesRecyclerView?.layoutManager = LinearLayoutManager(context)
 
         adapter?.listener = object : TrashesRecyclerViewActivity.OnItemClickListener {
             override fun onTrashClick(trash: Trash?) {
                 Log.i("TAG", "trash: ${trash}")
                 trash?.let {
-                    val action = TrashesFragmentDirections.actionTrashesFragmentToShowcaseTrashFragment(it.name, it.imageUrl, it.author)
+                    val action = TrashesFragmentDirections.actionTrashesFragmentToShowcaseTrashFragment(it.name, it.imageUrl, it.author, it.address)
                     Navigation.findNavController(view).navigate(action)
                 }
             }

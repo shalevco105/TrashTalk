@@ -1,8 +1,11 @@
 package trashTalk.apps.trashTalk.modules.editTrash
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -23,6 +26,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import trashTalk.apps.trashTalk.R
+import trashTalk.apps.trashTalk.base.MyApplication
 import trashTalk.apps.trashTalk.databinding.FragmentEditTrashBinding
 import trashTalk.apps.trashTalk.models.Trash
 import trashTalk.apps.trashTalk.models.Model
@@ -59,6 +63,7 @@ class EditTrashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         _binding = FragmentEditTrashBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -91,8 +96,12 @@ class EditTrashFragment : Fragment() {
             .into(trashImageView);
 
         uploadImageButton?.setOnClickListener {
+            // PICK INTENT picks item from data
+            // and returned selected item
             val galleryIntent = Intent(Intent.ACTION_PICK)
+            // here item is type of image
             galleryIntent.type = "image/*"
+            // ActivityResultLauncher callback
             imagePickerActivityResult.launch(galleryIntent)
         };
 
@@ -134,8 +143,11 @@ class EditTrashFragment : Fragment() {
 
 
     private var imagePickerActivityResult: ActivityResultLauncher<Intent> =
+    // lambda expression to receive a result back, here we
+        // receive single item(photo) on selection
         registerForActivityResult( ActivityResultContracts.StartActivityForResult()) { result ->
             if (result != null && result.data?.data.toString().isNotEmpty()) {
+                // getting URI of selected Image
                 trashImageUri = result.data?.data
 
                 Picasso.get()

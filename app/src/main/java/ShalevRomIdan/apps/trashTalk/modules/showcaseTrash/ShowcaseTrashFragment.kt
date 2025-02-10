@@ -1,5 +1,6 @@
 package trashTalk.apps.trashTalk.modules.showcaseTrash
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import trashTalk.apps.trashTalk.models.Model
 class ShowcaseTrashFragment : Fragment() {
     private var trashNameTextView: TextView? = null
     private var trashAuthorTextView: TextView? = null
+    private var trashAddressTextView: TextView? = null
     private var trashImageView: ImageView? = null
 
     private var _binding: FragmentShowcaseTrashBinding? = null
@@ -23,12 +25,15 @@ class ShowcaseTrashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentShowcaseTrashBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val trashName = arguments?.let {
             ShowcaseTrashFragmentArgs.fromBundle(it).TRASHNAME
+        }
+
+        val trashAddress = arguments?.let {
+            ShowcaseTrashFragmentArgs.fromBundle(it).TRASHADDRESS
         }
 
         val trashUrl = arguments?.let {
@@ -40,12 +45,14 @@ class ShowcaseTrashFragment : Fragment() {
         }
 
         trashAuthorTextView = binding.authorNickName
+        trashAddressTextView = binding.trashAddressTextView
         trashImageView = binding.showcaseTrashImage
 
         trashNameTextView?.text = trashName ?: "BOOP"
         Model.instance.getAuthorByEmail(author?:"") {
             trashAuthorTextView?.text = it.nickname
         }
+        trashAddressTextView?.text = trashAddress;
         Picasso.get().load(trashUrl)
             .centerCrop()
             .fit()

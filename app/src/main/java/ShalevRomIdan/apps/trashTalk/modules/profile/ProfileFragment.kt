@@ -103,10 +103,10 @@ class ProfileFragment : Fragment() {
     private fun uploadImageToCloudinary(callback: (String) -> Unit) {
         val cloudinary = Cloudinary(
             ObjectUtils.asMap(
-                "cloud_name", "dy5xyzlhm",
-                "api_key", "576721329452639",
-                "api_secret", "xiPVujuY3tz3RxBqcZ8futbNVp8"
-            ))
+            "cloud_name", "dy5xyzlhm",
+            "api_key", "576721329452639",
+            "api_secret", "xiPVujuY3tz3RxBqcZ8futbNVp8"
+        ))
 
         val filePath = getFilePathFromUri(profileImageUri!!) // Convert URI to File path
 

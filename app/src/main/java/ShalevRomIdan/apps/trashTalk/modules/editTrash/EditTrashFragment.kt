@@ -115,7 +115,7 @@ class EditTrashFragment : Fragment() {
 
     private fun editTrash(trash:Trash, view: View) {
         Model.instance.editTrash(trash) {
-            Navigation.findNavController(view).navigate(R.id.userTrashesFragment)
+            Navigation.findNavController(view).navigate(R.id.trashesFragment)
         }
     }
 

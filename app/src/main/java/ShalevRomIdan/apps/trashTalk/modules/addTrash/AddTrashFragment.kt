@@ -97,11 +97,11 @@ class AddTrashFragment : Fragment() {
 
             if (trashImageUri != null) {
                 uploadImageToCloudinary { uri ->
-                    val trash = Trash(id, name, address, false, author, uri)
+                    val trash = Trash(id, name, address, author, uri)
                     saveTrash(trash, it)
                 }
             } else {
-                val trash = Trash(id, name, address, false, author, placeholderImageSrc)
+                val trash = Trash(id, name, address, author, placeholderImageSrc)
                 saveTrash(trash, it)
             }
         }

@@ -17,6 +17,7 @@ class ShowcaseTrashFragment : Fragment() {
     private var trashAuthorTextView: TextView? = null
     private var trashAddressTextView: TextView? = null
     private var trashImageView: ImageView? = null
+    private var trashLastUpdateTextView: TextView? = null
 
     private var _binding: FragmentShowcaseTrashBinding? = null
     private val binding get() = _binding!!
@@ -47,6 +48,7 @@ class ShowcaseTrashFragment : Fragment() {
         trashAuthorTextView = binding.authorNickName
         trashAddressTextView = binding.trashAddressTextView
         trashImageView = binding.showcaseTrashImage
+        trashNameTextView = binding.trashNameTextView
 
         trashNameTextView?.text = trashName ?: "BOOP"
         Model.instance.getAuthorByEmail(author?:"") {

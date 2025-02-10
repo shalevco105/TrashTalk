@@ -12,7 +12,6 @@ data class Trash(
     @PrimaryKey val id:String,
     val name:String,
     val address: String = "",
-    var isChecked:Boolean,
     var author:String,
     var imageUrl: String,
     var lastUpdated:Long? = null) {
@@ -21,7 +20,6 @@ data class Trash(
         const val ID_KEY = "id"
         const val NAME_KEY = "name"
         const val ADDRESS_KEY = "address"
-        const val IS_CHECKED_KEY = "isChecked"
         const val AUTHOR = "author"
         const val IMAGE_URL_KEY = "imageUrl"
 
@@ -66,10 +64,9 @@ data class Trash(
             val id = json.get(ID_KEY) as? String ?: ""
             val name = json.get(NAME_KEY) as? String ?: ""
             val address = json.get(ADDRESS_KEY) as? String ?: ""
-            val isChecked = json.get(IS_CHECKED_KEY) as? Boolean?: false
             val author = json.get(AUTHOR) as? String?: ""
             val imageUrl = json[IMAGE_URL_KEY] as? String?: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Golde33443.jpg"
-            val trash = Trash(id, name, address, isChecked, author, imageUrl)
+            val trash = Trash(id, name, address, author, imageUrl)
 
             val timestamp:Timestamp? = json[LAST_UPDATED] as? Timestamp
             timestamp?.let {
@@ -85,7 +82,6 @@ data class Trash(
             ID_KEY to id,
             NAME_KEY to name,
             ADDRESS_KEY to address,
-            IS_CHECKED_KEY to isChecked,
             IMAGE_URL_KEY to imageUrl,
             AUTHOR to author,
             LAST_UPDATED to FieldValue.serverTimestamp()

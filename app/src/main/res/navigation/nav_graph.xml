@@ -103,7 +103,7 @@
     <fragment
         android:id="@+id/editTrashFragment"
         android:name="trashTalk.apps.trashTalk.modules.editTrash.EditTrashFragment"
-        android:label="fragment_edit_trash"
+        android:label="Edit Trash"
         tools:layout="@layout/fragment_edit_trash">
         <argument
             android:name="TRASH_ID"
